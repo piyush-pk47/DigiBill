@@ -20,6 +20,7 @@ import java.util.TimeZone;
 
 public class ShowStock extends AppCompatActivity {
     ListView listView;
+    // this will show all items
     ArrayList<String> arrayList=new ArrayList<>();
     TextView dateView;
     ArrayAdapter arrayAdapter;
