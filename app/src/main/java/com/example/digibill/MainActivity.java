@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showStock(View view)
     {
-        Intent intent=new Intent(getApplicationContext(),ShowStock.class);
+        Intent intent=new Intent(getApplicationContext(),updShowStock.class);
         startActivity(intent);
         //This opens activity where you can see stock of the store
     }
