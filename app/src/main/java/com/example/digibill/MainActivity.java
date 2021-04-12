@@ -15,6 +15,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    //this is sql version
+
     public static SQLiteDatabase database;
     // this data base stores stock
 
