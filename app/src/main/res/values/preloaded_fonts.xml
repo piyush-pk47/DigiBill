@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/amatic_sc</item>
+        <item>@font/capriola</item>
         <item>@font/chelsea_market</item>
+        <item>@font/comfortaa_light</item>
     </array>
 </resources>
