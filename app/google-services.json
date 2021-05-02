@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "857797724303",
+    "project_id": "digibill-ea288",
+    "storage_bucket": "digibill-ea288.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857797724303:android:8e642cf079efd7a94908fa",
+        "android_client_info": {
+          "package_name": "com.example.digibill"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "857797724303-vkn3k585tlsejvsnegafpo4nhi1qp1nv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxkMLrV42xXvVK0I_dueMfkACm6rpIurk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "857797724303-vkn3k585tlsejvsnegafpo4nhi1qp1nv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
