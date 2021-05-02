@@ -14,16 +14,28 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
 
+import static com.example.digibill.MainActivity.intent;
+
+
 public class EditItem extends AppCompatActivity {
 
     EditText nameText,unitText,prizeText,quantityText;
     String finName,finUnit,finPrize,finQuantity;
+    public static String user;//="piyush";
+    private FirebaseDatabase db;//=FirebaseDatabase.getInstance();
+    private DatabaseReference root;//=db.getReference().child("main").child(user);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +45,10 @@ public class EditItem extends AppCompatActivity {
         unitText=(EditText) findViewById(R.id.unit);
         prizeText=(EditText) findViewById(R.id.prize);
         quantityText=(EditText) findViewById(R.id.quantity);
+        user=MainActivity.key;
+        db=FirebaseDatabase.getInstance();
+        root=db.getReference().child("main").child(user);
+
         nameText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -104,20 +120,29 @@ public class EditItem extends AppCompatActivity {
             MainActivity.database=this.openOrCreateDatabase("stock",MODE_PRIVATE,null);
             MainActivity.database.execSQL("CREATE TABLE IF NOT EXISTS list (name VARCHAR,unit VARCHAR,prize VARCHAR,quantity VARCHAR)");
             MainActivity.database.execSQL("INSERT INTO list (name,unit,prize,quantity) VALUES ('"+finName+"','"+finUnit+"','"+finPrize+"','"+finQuantity+"')");
-            Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-            startActivity(intent);
-            HashMap<String,item> add=new HashMap<>();
-            item i1=new item(finName,finUnit,finPrize,finQuantity);
-            add.put(finName,i1);
-            FirebaseFirestore firedata=FirebaseFirestore.getInstance();
-            firedata.collection("user1").document("stocklist").set(add, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
+            HashMap<String,String> usermap=new HashMap<>();
+            usermap.put("name",finName);
+            usermap.put("unit",finUnit);
+            usermap.put("price",finPrize);
+            usermap.put("quantity",finQuantity);
+            root.child(finName).setValue(usermap).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                   if(task.isSuccessful()==true)
-                   {
-                       Toast.makeText(getApplicationContext(),"successful",Toast.LENGTH_SHORT).show();
-                   }
+                    Toast.makeText(getApplicationContext(),"data saved",Toast.LENGTH_SHORT).show();
                 }
             });
+            
+            this.finish();
+
     }
 }
+//    FirebaseFirestore firedata=FirebaseFirestore.getInstance();
+//            firedata.collection("user1").document("stocklist").set(add, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
+//@Override
+//public void onComplete(@NonNull Task<Void> task) {
+//        if(task.isSuccessful()==true)
+//        {
+//        Toast.makeText(getApplicationContext(),"successful",Toast.LENGTH_SHORT).show();
+//        }
+//        }
+//        });
