@@ -2,9 +2,9 @@ package com.example.digibill;
 
 public class modelClass
 {
-    private String textview;
-    private String textview1;
-    private String textview2;
+    String textview;
+    String textview1;
+    String textview2;
 
     modelClass(String textview,String textview1,String textview2)
     {
