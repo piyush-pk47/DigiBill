@@ -136,13 +136,3 @@ public class EditItem extends AppCompatActivity {
 
     }
 }
-//    FirebaseFirestore firedata=FirebaseFirestore.getInstance();
-//            firedata.collection("user1").document("stocklist").set(add, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
-//@Override
-//public void onComplete(@NonNull Task<Void> task) {
-//        if(task.isSuccessful()==true)
-//        {
-//        Toast.makeText(getApplicationContext(),"successful",Toast.LENGTH_SHORT).show();
-//        }
-//        }
-//        });

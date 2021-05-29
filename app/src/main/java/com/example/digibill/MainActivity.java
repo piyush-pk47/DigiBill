@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     public static List<modelClass> curlist;
     public static Intent intent;
     public static String key;
+    public static List<Model> cartList;
     // this data base stores stock
 
     public void addItem(View view)
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showStock(View view)
     {
-        Intent intent=new Intent(getApplicationContext(),firebaseshow.class);
+        Intent intent=new Intent(getApplicationContext(),addInCart.class);
         startActivity(intent);
         //this.finish();
         //This opens activity where you can see stock of the store
@@ -58,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         FirebaseUser current= FirebaseAuth.getInstance().getCurrentUser();
         key=current.getUid();
-        Toast.makeText(this, "" + current.getUid(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "" + current.getUid(), Toast.LENGTH_SHORT).show();
+        cartList=new ArrayList<>();
 
     }
 }

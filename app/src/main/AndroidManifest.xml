@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DigiBill"
         android:usesCleartextTraffic="true">
-        <activity android:name=".register"></activity>
+        <activity android:name=".inovice_activity"></activity>
+        <activity android:name=".addInCart" />
+        <activity android:name=".register" />
         <activity android:name=".MainActivity" />
         <activity android:name=".firebaseshow" />
         <activity android:name=".updShowStock" />
