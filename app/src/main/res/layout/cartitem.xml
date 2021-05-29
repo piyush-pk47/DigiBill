@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/cardview_light_background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
@@ -17,7 +16,7 @@
             android:elevation="50dp"
             android:paddingEnd="10dp"
             android:paddingBottom="15dp"
-            android:layout_height="140dp">
+            android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/textview"
                 android:layout_width="120dp"
@@ -30,9 +29,9 @@
 
             </TextView>
             <TextView
-                android:id="@+id/nametxt"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
+                android:id="@+id/cartName"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_toRightOf="@+id/textview"
                 android:layout_marginTop="20dp"
@@ -43,32 +42,34 @@
             </TextView>
             <TextView
                 android:id="@+id/textview2"
-                android:layout_width="120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_below="@+id/textview"
+                android:layout_below="@+id/cartName"
                 android:layout_marginTop="0dp"
                 android:text="Unit"
                 android:textColor="#000000"
                 android:textSize="15sp">
 
             </TextView>
+
             <TextView
-                android:id="@+id/unittxt"
-                android:layout_width="120dp"
+                android:id="@+id/cartUnit"
+                android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_below="@+id/textview"
-                android:layout_toRightOf="@+id/textview2"
+                android:layout_below="@+id/cartName"
+                android:layout_marginLeft="165dp"
                 android:layout_marginTop="0dp"
+                android:layout_toRightOf="@+id/textview2"
                 android:text="Kg"
                 android:textColor="#000000"
                 android:textSize="15sp">
 
             </TextView>
+
             <TextView
                 android:id="@+id/textview4"
-                android:layout_width="120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_below="@+id/textview2"
@@ -78,22 +79,24 @@
                 android:textSize="15sp">
 
             </TextView>
+
             <TextView
-                android:id="@+id/pricetxt"
-                android:layout_width="120dp"
+                android:id="@+id/cartPrice"
+                android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_below="@+id/textview2"
+                android:layout_marginLeft="165dp"
+                android:layout_marginTop="1dp"
                 android:layout_toRightOf="@+id/textview2"
-                android:layout_marginTop="0dp"
                 android:text="40"
                 android:textColor="#000000"
                 android:textSize="15sp">
 
             </TextView>
+
             <TextView
                 android:id="@+id/textview7"
-                android:layout_width="120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_below="@+id/textview4"
@@ -103,42 +106,32 @@
                 android:textSize="15sp">
 
             </TextView>
+
             <TextView
-                android:id="@+id/quantitytxt"
-                android:layout_width="120dp"
+                android:id="@+id/cartquantity"
+                android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_below="@+id/textview4"
-                android:layout_toRightOf="@+id/textview4"
+                android:layout_marginLeft="159dp"
                 android:layout_marginTop="0dp"
+                android:layout_toRightOf="@+id/textview4"
                 android:text="20"
                 android:textColor="#000000"
                 android:textSize="15sp">
 
             </TextView>
 
-            <ImageView
-                android:id="@+id/editbutton"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
-                android:layout_toRightOf="@id/nametxt"
-                android:clickable="true"
-                app:srcCompat="@drawable/ic_action_name"></ImageView>
-            <ImageView
-                android:id="@+id/deletebutton"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="20dp"
-                android:layout_below="@id/editbutton"
-                android:layout_marginTop="30dp"
-                android:layout_toRightOf="@id/nametxt"
-                app:srcCompat="@drawable/deleicon"></ImageView>
-
+            <ImageButton
+                android:id="@+id/delebtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="17dp"
+                android:layout_toRightOf="@id/cartName"
+                app:srcCompat="@drawable/deleicon" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
-
 
 </RelativeLayout>

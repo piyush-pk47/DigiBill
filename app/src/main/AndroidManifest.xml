@@ -10,12 +10,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DigiBill">
-        <activity android:name=".updShowStock"></activity>
+        android:theme="@style/Theme.DigiBill"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".inovice_activity"></activity>
+        <activity android:name=".addInCart" />
+        <activity android:name=".register" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".firebaseshow" />
+        <activity android:name=".updShowStock" />
         <activity android:name=".showItem" />
         <activity android:name=".ShowStock" />
         <activity android:name=".EditItem" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
