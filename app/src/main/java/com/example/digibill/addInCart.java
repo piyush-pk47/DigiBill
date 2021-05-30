@@ -93,6 +93,5 @@ public class addInCart extends AppCompatActivity {
         adapter=new fireBaseAdapter(options,this);
         adapter.startListening();
         recview.setAdapter(adapter);
-
     }
 }

@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         //this.finish();
         //This opens activity where you can add item
     }
+
     public void showStock(View view)
     {
         Intent intent=new Intent(getApplicationContext(),addInCart.class);

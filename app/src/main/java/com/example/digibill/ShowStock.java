@@ -24,6 +24,8 @@ public class ShowStock extends AppCompatActivity {
     ArrayList<String> arrayList=new ArrayList<>();
     TextView dateView;
     ArrayAdapter arrayAdapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
