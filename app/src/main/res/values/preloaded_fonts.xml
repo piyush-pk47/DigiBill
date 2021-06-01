@@ -5,5 +5,8 @@
         <item>@font/capriola</item>
         <item>@font/chelsea_market</item>
         <item>@font/comfortaa_light</item>
+        <item>@font/poppins</item>
+        <item>@font/poppins_medium</item>
+        <item>@font/poppins_semibold</item>
     </array>
 </resources>
