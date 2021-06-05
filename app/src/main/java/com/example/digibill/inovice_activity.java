@@ -152,7 +152,7 @@ public class inovice_activity extends AppCompatActivity {
             startHeight += 100;
         }
 
-        int grandTotal = 0;
+        double grandTotal = 0;
         for(int i=0;i<n;i++) {
             grandTotal += total[i];
         }
@@ -183,7 +183,7 @@ public class inovice_activity extends AppCompatActivity {
         namePaint.setTextAlign(Paint.Align.LEFT);
         canvas.drawText("Total",700,startHeight + 65 ,namePaint);
         namePaint.setTextAlign(Paint.Align.RIGHT);
-        canvas.drawText(String.valueOf(grandTotal + (grandTotal*12)/100),pageWidth-40,startHeight + 65 ,namePaint);
+        canvas.drawText(String.valueOf(grandTotal + (grandTotal*6.0)/100),pageWidth-40,startHeight + 65 ,namePaint);
 
         myPdf.finishPage(myPage1);
 
@@ -204,7 +204,5 @@ public class inovice_activity extends AppCompatActivity {
         share.setType("application/pdf");
         share.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + f));
         startActivity(Intent.createChooser(share,"Share the file..."));
-
-
     }
 }
