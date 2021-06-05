@@ -55,8 +55,6 @@ public class register extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     private void registerUser(String finEmail, String finPass)
