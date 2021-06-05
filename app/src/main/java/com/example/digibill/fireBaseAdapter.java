@@ -25,6 +25,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static com.example.digibill.MainActivity.cartList;
 
 public class fireBaseAdapter extends FirebaseRecyclerAdapter<Model,fireBaseAdapter.myviewholder>
@@ -42,6 +45,7 @@ public class fireBaseAdapter extends FirebaseRecyclerAdapter<Model,fireBaseAdapt
         holder.price.setText(model.getPrice());
         holder.unit.setText(model.getUnit());
         holder.quantity.setText(model.getQuantity());
+        holder.bordertxt.setText("___________________________________________________________________");
         holder.deltebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +76,14 @@ public class fireBaseAdapter extends FirebaseRecyclerAdapter<Model,fireBaseAdapt
                             add.setUnit(model.getUnit());
                             cartList.add(add);
                             //Toast.makeText(context,"remove item",Toast.LENGTH_SHORT).show();
+                            FirebaseDatabase.getInstance().getReference().child("main").child(MainActivity.key)
+                                    .child(model.getName()).removeValue()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            dialog.dismiss();
+                                        }
+                                    });
                         }
                         else if(leftUnit>0)
                         {
@@ -81,6 +93,19 @@ public class fireBaseAdapter extends FirebaseRecyclerAdapter<Model,fireBaseAdapt
                             add.setQuantity(addUnit.getText().toString());
                             add.setUnit(model.getUnit());
                             cartList.add(add);
+                            Map<String,Object> map=new HashMap<>();
+                            map.put("name",model.getName());
+                            map.put("price",model.getPrice());
+                            map.put("unit",model.getUnit());
+                            map.put("quantity",String.valueOf(leftUnit));
+                            FirebaseDatabase.getInstance().getReference().child("main").child(MainActivity.key)
+                                    .child(model.getName()).updateChildren(map)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            dialog.dismiss();
+                                        }
+                                    });
                         }
                         else
                         {
@@ -95,6 +120,51 @@ public class fireBaseAdapter extends FirebaseRecyclerAdapter<Model,fireBaseAdapt
 
             }
         });
+        holder.updatebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                DialogPlus dialog = DialogPlus.newDialog(context)
+                        .setGravity(Gravity.CENTER)
+                        .setMargin(50,0,50,0)
+                        .setContentHolder(new ViewHolder(R.layout.updateitem))
+                        .setExpanded(false)  // This will enable the expand feature, (similar to android L share dialog)
+                        .create();
+                View currview=dialog.getHolderView();
+                EditText chaName=currview.findViewById(R.id.chagename);
+                EditText chaUnit=currview.findViewById(R.id.unitname);
+                EditText chaPrice=currview.findViewById(R.id.pricename);
+                EditText chaQuant=currview.findViewById(R.id.quantityname);
+                Button updatebttn=currview.findViewById(R.id.updateit);
+                chaName.setText(model.getName());
+                chaPrice.setText(model.getPrice());
+                chaUnit.setText(model.getUnit());
+                chaQuant.setText(model.getQuantity());
+                updatebttn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Map<String,Object> map=new HashMap<>();
+                        map.put("name",chaName.getText().toString());
+                        map.put("price",chaPrice.getText().toString());
+                        map.put("unit",chaUnit.getText().toString());
+                        map.put("quantity",chaQuant.getText().toString());
+                        FirebaseDatabase.getInstance().getReference().child("main").child(MainActivity.key)
+                                .child(model.getName()).updateChildren(map)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                    }
+                });
+
+                dialog.show();
+
+
+            }
+        });
+
 
     }
 
@@ -107,8 +177,8 @@ public class fireBaseAdapter extends FirebaseRecyclerAdapter<Model,fireBaseAdapt
 
     class myviewholder extends RecyclerView.ViewHolder
     {
-        TextView name,unit,price,quantity;
-        ImageButton deltebtn;
+        TextView name,unit,price,quantity,bordertxt;
+        ImageButton deltebtn,updatebtn;
         public myviewholder(@NonNull View itemView) {
             super(itemView);
             name=(TextView)itemView.findViewById(R.id.cartName);
@@ -116,6 +186,8 @@ public class fireBaseAdapter extends FirebaseRecyclerAdapter<Model,fireBaseAdapt
             price=(TextView)itemView.findViewById(R.id.cartPrice);
             quantity=(TextView)itemView.findViewById(R.id.cartquantity);
             deltebtn=(ImageButton)itemView.findViewById(R.id.delebtn);
+            bordertxt=(TextView)itemView.findViewById(R.id.border);
+            updatebtn= (ImageButton) itemView.findViewById(R.id.updateId);
         }
     }
 }
