@@ -72,7 +72,14 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         String mail = email.getText().toString();
         String pass = password.getText().toString();
-        LoginUser(mail, pass);
+        if(TextUtils.isEmpty(mail) || TextUtils.isEmpty(pass))
+        {
+            Toast.makeText(getContext(),"Some fileds are empty",Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            LoginUser(mail, pass);
+        }
     }
 
     private void LoginUser(String mail,String password) {

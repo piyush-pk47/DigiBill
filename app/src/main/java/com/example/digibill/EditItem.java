@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -121,17 +122,23 @@ public class EditItem extends AppCompatActivity {
             MainActivity.database.execSQL("CREATE TABLE IF NOT EXISTS list (name VARCHAR,unit VARCHAR,prize VARCHAR,quantity VARCHAR)");
             MainActivity.database.execSQL("INSERT INTO list (name,unit,prize,quantity) VALUES ('"+finName+"','"+finUnit+"','"+finPrize+"','"+finQuantity+"')");
             HashMap<String,String> usermap=new HashMap<>();
-            usermap.put("name",finName);
-            usermap.put("unit",finUnit);
-            usermap.put("price",finPrize);
-            usermap.put("quantity",finQuantity);
-            root.child(finName).setValue(usermap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    Toast.makeText(getApplicationContext(),"data saved",Toast.LENGTH_SHORT).show();
-                }
-            });
-            
-            this.finish();
+            if(TextUtils.isEmpty(finName) || TextUtils.isEmpty(finName) || TextUtils.isEmpty(finPrize) || TextUtils.isEmpty(finQuantity))
+            {
+                Toast.makeText(getApplicationContext(),"Some fields are empty",Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                usermap.put("name",finName);
+                usermap.put("unit",finUnit);
+                usermap.put("price",finPrize);
+                usermap.put("quantity",finQuantity);
+                root.child(finName).setValue(usermap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(getApplicationContext(),"data saved",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                this.finish();
+            }
     }
 }

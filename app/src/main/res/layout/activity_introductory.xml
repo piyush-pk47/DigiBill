@@ -36,7 +36,7 @@
         android:id="@+id/logo"
         android:layout_width="175dp"
         android:layout_height="160dp"
-        android:src="@drawable/billlogo"
+        android:src="@drawable/billingmachineicon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

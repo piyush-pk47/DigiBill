@@ -3,7 +3,7 @@
     package="com.example.digibill">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DigiBill"
         android:usesCleartextTraffic="true">
-        <activity android:name=".inovice_activity"></activity>
+
+        <activity android:name=".IntroductoryActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <activity android:name=".inovice_activity" />
         <activity android:name=".addInCart" />
         <activity android:name=".register" />
         <activity android:name=".MainActivity" />
@@ -22,13 +32,8 @@
         <activity android:name=".showItem" />
         <activity android:name=".ShowStock" />
         <activity android:name=".EditItem" />
-        <activity android:name=".login">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".login"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
         <meta-data
             android:name="preloaded_fonts"
