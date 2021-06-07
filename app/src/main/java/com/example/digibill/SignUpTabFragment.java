@@ -21,6 +21,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class SignUpTabFragment extends Fragment implements View.OnClickListener {
 
@@ -71,7 +76,29 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        SignUpUser(regemail.getText().toString(),regpassword.getText().toString());
+        String finEmail=regemail.getText().toString();
+        String finPass=regpassword.getText().toString();
+        String name=shopee_name.getText().toString();
+        String number=reg_mobile.getText().toString();
+        if(TextUtils.isEmpty(finEmail) || TextUtils.isEmpty(finPass)||TextUtils.isEmpty(name) || TextUtils.isEmpty(number))
+        {
+            Toast.makeText(getContext(),"Empty",Toast.LENGTH_SHORT).show();
+        }
+        else if(strongPassword(finEmail)==0)
+        {
+            Toast.makeText(getContext(),"Password is too weak",Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            SignUpUser(regemail.getText().toString(),regpassword.getText().toString());
+        }
+    }
+
+    private int strongPassword(String finEmail)
+    {
+        if(finEmail.length()>=6)
+            return 1;
+        return 0;
     }
 
     private void SignUpUser(String mail,String password) {
@@ -80,6 +107,22 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(getContext(),"Registerd succesfully",Toast.LENGTH_SHORT).show();
+                    HashMap<String,String> usermap=new HashMap<>();
+                    usermap.put("name",shopee_name.getText().toString());
+                    usermap.put("mobile_number",reg_mobile.getText().toString());
+                    usermap.put("invoice","1");
+                    FirebaseDatabase db;//=FirebaseDatabase.getInstance();
+                    DatabaseReference root;
+                    db= FirebaseDatabase.getInstance();
+                    FirebaseUser current= FirebaseAuth.getInstance().getCurrentUser();
+                    String ukey=current.getUid();
+                    root=db.getReference().child("main").child(ukey+"personal");
+                    root.child("personal").setValue(usermap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(getContext(),"data saved",Toast.LENGTH_SHORT).show();
+                        }
+                    });
                     startActivity(new Intent(getContext(),MainActivity.class));
                 } else {
                     Snackbar.make(getActivity().findViewById(android.R.id.content), task.getException().getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
@@ -87,6 +130,7 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
             }
         });
     }
+
 }
 
 

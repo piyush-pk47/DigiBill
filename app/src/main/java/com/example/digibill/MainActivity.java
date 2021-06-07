@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static com.example.digibill.EditItem.user;
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public static Intent intent;
     public static String key;
     public static List<Model> cartList;
+    public static String storeName;
     // this data base stores stock
 
     public void addItem(View view)
@@ -62,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
         key=current.getUid();
         //Toast.makeText(this, "" + current.getUid(), Toast.LENGTH_SHORT).show();
         cartList=new ArrayList<>();
+
+
+
 
     }
 }
