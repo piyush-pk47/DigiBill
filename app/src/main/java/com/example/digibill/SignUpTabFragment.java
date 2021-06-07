@@ -38,6 +38,7 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
 
     float v = 0;
 
+
     public SignUpTabFragment() {
         // empty constructor
     }

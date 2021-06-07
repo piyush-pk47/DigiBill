@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:text="Generate Bill"
         app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/itemshape"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
